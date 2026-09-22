@@ -16,6 +16,8 @@
 #include <SPIFFS.h>
 
 // ─── KONFIGURASI ──────────────────────────────────────────
+#define LED_PIN 2  // LED built-in ESP32 DevKit V1
+
 uint8_t target_bssid[6] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // Ganti dengan BSSID target
 uint8_t target_channel = 1;
 bool handshake_captured = false;
@@ -81,7 +83,7 @@ void sniffer(void *buf, wifi_promiscuous_pkt_type_t type) {
                 pcap_file.write(pkt->payload, len);
                 pcap_file.flush();
                 handshake_captured = true;
-                digitalWrite(LED_BUILTIN, HIGH);
+                digitalWrite(LED_PIN, HIGH);
             }
         }
     }
@@ -92,8 +94,8 @@ void setup() {
     Serial.begin(115200);
     delay(1000);
     
-    pinMode(LED_BUILTIN, OUTPUT);
-    digitalWrite(LED_BUILTIN, LOW);
+    pinMode(LED_PIN, OUTPUT);
+    digitalWrite(LED_PIN, LOW);
     
     Serial.println("\n=== ESP32 WiFi Tools ===");
     Serial.println("Commands:");
