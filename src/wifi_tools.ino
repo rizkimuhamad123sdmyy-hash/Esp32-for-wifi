@@ -24,7 +24,7 @@ File pcap_file;
 // ─── SCAN AP ──────────────────────────────────────────────
 void scanAPs() {
     Serial.println("\n[*] Scanning WiFi...");
-    WiFi.mode(WIFI_STA);
+    WiFi.mode(WIFI_STA
     WiFi.disconnect();
     delay(100);
     
